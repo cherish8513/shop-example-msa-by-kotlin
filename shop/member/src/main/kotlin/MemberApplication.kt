@@ -1,4 +1,4 @@
-package shop.user.main
+package shop.member.main
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -6,8 +6,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 
 @SpringBootApplication
 @EnableDiscoveryClient
-class UserApplication
+class MemberApplication
 
 fun main(args: Array<String>) {
-    runApplication<UserApplication>(*args)
+    runApplication<MemberApplication>(*args)
 }

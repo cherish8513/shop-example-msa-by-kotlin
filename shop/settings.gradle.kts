@@ -1,3 +1,3 @@
 rootProject.name = "shop"
-include("user")
+include("member")
 include("eureka-server")
