@@ -1,5 +1,6 @@
 package shop.member.main.controller
 
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -27,6 +28,6 @@ class MemberController(val greeting: Greeting, val memberService: MemberService)
     fun createUser(@RequestBody @Valid request : MemberRequest) : ResponseEntity<Any> {
         val memberDto = MemberDto(request.name, request.email, request.pwd, "null", null, "null")
         memberService.createUser(memberDto)
-        return ResponseEntity.status(201).body("Create user method is called")
+        return ResponseEntity.status(HttpStatus.CREATED).body("Create user method is called")
     }
 }
