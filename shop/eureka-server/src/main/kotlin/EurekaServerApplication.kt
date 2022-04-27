@@ -1,4 +1,4 @@
-package shop.user.main
+package shop.eureka.main
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

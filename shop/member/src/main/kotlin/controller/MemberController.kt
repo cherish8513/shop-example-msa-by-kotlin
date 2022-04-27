@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/members")
 class MemberController(val greeting: Greeting, val memberService: MemberService) {
 
     @GetMapping("/health-check")
@@ -24,7 +24,7 @@ class MemberController(val greeting: Greeting, val memberService: MemberService)
     @GetMapping("welcome")
     fun welcome() : String = greeting.message
 
-    @PostMapping("/users")
+    @PostMapping
     fun createUser(@RequestBody @Valid request : MemberRequest) : ResponseEntity<Any> {
         val memberDto = MemberDto(request.name, request.email, request.pwd, "null", null, "null")
         memberService.createUser(memberDto)
