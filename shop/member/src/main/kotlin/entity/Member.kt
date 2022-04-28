@@ -7,7 +7,7 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 
 @Entity
-class Member {
+class Member : BaseTimeEntity() {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ class Member {
     private set
 
 
-    fun createUser(name: String, email: String, encryptedPwd: String, uuid: String) : Member{
+    fun createMember(name: String, email: String, encryptedPwd: String, uuid: String) : Member{
         val member = Member()
         member.name = name
         member.email = email
