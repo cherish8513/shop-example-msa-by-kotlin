@@ -1,9 +1,11 @@
 package shop.catalog.main.entity
 
+import org.hibernate.annotations.ColumnDefault
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
+import javax.persistence.Column
 import javax.persistence.EntityListeners
 import javax.persistence.MappedSuperclass
 
@@ -11,8 +13,11 @@ import javax.persistence.MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class BaseTimeEntity {
     @CreatedDate
-    private val createdAt: LocalDateTime? = null
+    @ColumnDefault(value = "CURRENT_TIMESTAMP")
+    var createdAt: LocalDateTime? = null
+    private set
 
     @LastModifiedDate
-    private val modifiedAt: LocalDateTime? = null
+    var modifiedAt: LocalDateTime? = null
+    private set
 }

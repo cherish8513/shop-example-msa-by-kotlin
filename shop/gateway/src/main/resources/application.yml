@@ -29,6 +29,12 @@ spring:
           filters:
             - CustomFilter
 
+        - id: order-service
+            uri: lb://ORDER-SERVICE
+            predicates:
+              - Path=/order-service/**
+            filters:
+              - CustomFilter
 eureka:
   client:
     register-with-eureka: true
