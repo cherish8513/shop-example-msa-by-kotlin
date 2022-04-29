@@ -1,11 +1,13 @@
 package shop.catalog.main.entity
 
+import kotlinx.serialization.Serializable
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 
+@Serializable
 @Entity
 class Catalog : BaseTimeEntity(){
 
@@ -13,23 +15,23 @@ class Catalog : BaseTimeEntity(){
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "catalog_id")
     var id : Long ?= null
-        private set
+    private set
 
     @Column(nullable = false, length = 120, unique = true)
     var productId : String ?= null
-        private set
+    private set
 
     @Column(nullable = false)
     var productName : String ?= null
-        private set
+    private set
 
     @Column(nullable = false)
     var stock : Int ?= null
-        private set
+    private set
 
     @Column(nullable = false)
     var unitPrice : Int ?= null
-        private set
+    private set
 
 
     fun createCatalog(productId : String, productName : String, stock : Int, unitPrice : Int) : Catalog{
