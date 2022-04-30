@@ -1,40 +1,32 @@
 package shop.member.main.security
 
-import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import shop.member.main.service.MemberService
+import shop.member.main.security.config.JwtProperties
+import shop.member.main.service.LoginService
 
-@Configuration
 @EnableWebSecurity
-class WebSecurity(val memberService: MemberService, val bCryptPasswordEncoder: BCryptPasswordEncoder) : WebSecurityConfigurerAdapter(){
+class WebSecurity(val loginService: LoginService, val bCryptPasswordEncoder: BCryptPasswordEncoder, val properties : JwtProperties) : WebSecurityConfigurerAdapter(){
 
-    @Bean
-    fun passwordEncoder() : BCryptPasswordEncoder{
-        return BCryptPasswordEncoder()
-    }
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
-        http.authorizeRequests().antMatchers("/**")
         http.addFilter(getAuthenticationFilter())
+            .authorizeRequests()
+            .antMatchers("/**").permitAll()
         http.headers().frameOptions().disable()
     }
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(memberService).passwordEncoder(bCryptPasswordEncoder)
+        auth.userDetailsService(loginService).passwordEncoder(bCryptPasswordEncoder)
     }
 
     private fun getAuthenticationFilter(): AuthenticationFilter {
-        val filter = AuthenticationFilter()
+        val filter = AuthenticationFilter(loginService, properties)
         filter.setAuthenticationManager(authenticationManager())
 
         return filter
     }
-
-
-
 }
