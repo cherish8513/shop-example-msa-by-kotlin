@@ -13,28 +13,60 @@ spring:
             preLogger: true
             postLogger: true
       routes:
+#        - id: member-service
+#          uri: lb://MEMBER-SERVICE
+#          predicates:
+#            - Path=/member-service/**
+#          filters:
+#            - AddRequestHeader=first-request, first-request-header2
+#            - AddResponseHeader=first-response, first-response-header2
+#            - CustomFilter
+        - id: member-service
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/member-service/login
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - CustomFilter
         - id: member-service
           uri: lb://MEMBER-SERVICE
           predicates:
             - Path=/member-service/**
+            - Method=GET
           filters:
-#            - AddRequestHeader=first-request, first-request-header2
-#            - AddResponseHeader=first-response, first-response-header2
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - CustomFilter
+        - id: member-service
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/member-service/users
+            - Method=POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
+            - CustomFilter
+
 
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/catalog-service/**
           filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/catalog-service/(?<segment>.*), /$\{segment}
             - CustomFilter
 
         - id: order-service
-            uri: lb://ORDER-SERVICE
-            predicates:
-              - Path=/order-service/**
-            filters:
-              - CustomFilter
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+            - CustomFilter
 eureka:
   client:
     register-with-eureka: true

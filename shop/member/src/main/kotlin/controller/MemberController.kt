@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/member-service/members")
+@RequestMapping("/members")
 class MemberController(val greeting: Greeting, val memberService: MemberService) {
 
     @GetMapping("/health-check")

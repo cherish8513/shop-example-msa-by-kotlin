@@ -11,7 +11,7 @@ import shop.catalog.main.vo.ResponseCatalog
 import javax.servlet.http.HttpServletRequest
 
 @RestController
-@RequestMapping("/catalog-service/catalogs")
+@RequestMapping("/catalogs")
 class CatalogController(val catalogService: CatalogService) {
 
     @GetMapping("/health-check")
