@@ -19,7 +19,7 @@ class MemberController(val greeting: Greeting, val memberService: MemberService)
     @GetMapping("/health-check")
     fun status(servletRequest: HttpServletRequest) : String = "It's Working in Member Service " + servletRequest.serverPort
 
-    @GetMapping("welcome")
+    @GetMapping("/welcome")
     fun welcome() : String = greeting.message
 
     @PostMapping
