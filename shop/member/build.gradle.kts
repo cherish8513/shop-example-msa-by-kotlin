@@ -7,7 +7,7 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging-jvm:2.1.21")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("org.springframework.cloud:spring-cloud-starter-bootstrap")
-    implementation("org.springframework.cloud:spring-cloud-config-server")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("io.jsonwebtoken:jjwt-api:0.11.2")
     runtimeOnly ("io.jsonwebtoken:jjwt-impl:0.11.2")
     runtimeOnly ("io.jsonwebtoken:jjwt-jackson:0.11.2")
