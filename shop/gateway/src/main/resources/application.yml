@@ -49,7 +49,15 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/member-service/(?<segment>.*), /$\{segment}
             - CustomFilter
-
+        - id: member-service
+          uri: lb://MEMBER-SERVICE
+          predicates:
+            - Path=/member-service/actuator/**
+            - Method=GET, POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/member-service/(?<segment>.*), /$\{segment}
+            - CustomFilter
 
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
@@ -80,3 +88,9 @@ eureka:
 token:
   expiration-time: 86400000
   secret: tokenusersecretbabypizzacommonohmygodkimchi0123456894ASDWFER
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, info, httptrace
