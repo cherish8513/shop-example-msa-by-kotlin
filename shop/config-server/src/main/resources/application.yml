@@ -8,4 +8,4 @@ spring:
     config:
       server:
         git:
-          uri: file://C:\Users\SSAFY\Desktop\git\shop-example-msa-by-kotlin
+          uri: https://github.com/cherish8513/shop-example-msa-by-kotlin.git
