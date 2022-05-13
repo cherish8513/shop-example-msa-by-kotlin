@@ -1,3 +1,4 @@
 token:
-  expiration-time: 86400000
+  accessTokenExpirationTime: 8640000L
+  refreshTokenExpirationTime: 86400000L
   secret: tokenusersecretbabypizzacommonohmygodkimchi0123456894ASDWFER
