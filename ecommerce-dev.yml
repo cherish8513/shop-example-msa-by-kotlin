@@ -2,3 +2,6 @@ token:
   accessTokenExpirationTime: 8640000
   refreshTokenExpirationTime: 86400000
   secret: tokenusersecretbabypizzacommonohmygodkimchi0123456894ASDWFER
+
+gateway:
+  ip: 172.21.0.6
